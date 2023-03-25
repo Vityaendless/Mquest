@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Средневековый квест{% endblock %}
+
+{% block text %}
+    <p>Есть деньги,чтобы пробраться на корабль и уплыть. УРА!</p>
+{% endblock %}
+{% block action %}
+    <div>
+            <form action="{% url 'main' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="action" value="">Очередной круг сансары....</button>
+            </form>
+    </div>
+{% endblock %}
+{% block picture %}
+    <img class="img" src="{% static 'main/img/win.jpg' %}">
+{% endblock %}
+{% block hero %}
+    <div>
+        <h4>Персонаж спасен</h4>
+    </div>
+{% endblock %}

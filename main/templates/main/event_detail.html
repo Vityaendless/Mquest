@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Средневековый квест{% endblock %}
+
+{% block text %}
+    <p>{{ actions_details.0 }}</p>
+{% endblock %}
+{% block action %}
+    <div>
+        {% for value, action in actions_details.1.items %}
+            <form action="{% url 'random_event' value smtng_happens random_key %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="action" value="{{ value }}">{{ action }}</button>
+            </form>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block picture %}
+    <img class="img" src="{% static actions_details.2 %}">
+{% endblock %}
+{% block hero %}
+    <div>
+        <h4>Персонаж:</h4>
+        <p>Здоровье: {{cur_hero.health}}</p>
+        <p>Золото: {{cur_hero.gold}}</p>
+        <p>Возраст: {{cur_hero.printHeroesAge}}</p>
+        <p>Время: {{cur_time}}</p>
+    </div>
+{% endblock %}
